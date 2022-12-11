@@ -1,84 +1,80 @@
 # kaggle-humanity
 
 ## Table of contents
-1. [Data experiment: all data pipeline flags off](#experiment1)
-2. [Data experiment: all data pipeline flags on](#experiment2)
+1. [Best configuration](#best_config)
+2. [Best model](#best_model)
+3. [Other experimental models](#other_models)
 
-## Experiments with data pipeline
+### 1. Best configuration <a id="best_config"/>
 
-### 1. All data instruments are turned off: <a id="experiment1"/>
 ```
-USE_FEATURE_EXTRACTION = False
+USE_FEATURE_DROP = False
+USE_FEATURE_ENGINEERING = False
 USE_FEATURE_SCALING = False
-USE_OUTLIER_DETECTION = False
-```
-----------------------------------------
-**OutputCodeClassifier<br/>**
-Average RMSE: 3.052158332470308<br/>
-Average accuracy: 20.042462845010615%
-----------------------------------------
-**GaussianNB<br/>**
-Average RMSE: 8.124984708233635<br/>
-Average accuracy: 10.414012738853502%
-----------------------------------------
-**KNeighborsClassifier<br/>**
-Average RMSE: 2.8393874262905903<br/>
-Average accuracy: 25.923566878980886%
-----------------------------------------
-**SVC(poly)<br/>**
-Average RMSE: 2.921777636134703<br/>
-Average accuracy: 25.84925690021232%
-----------------------------------------
-**SVC(linear)<br/>**
-Average RMSE: 2.9800613958596633<br/>
-Average accuracy: 24.554140127388536%
-----------------------------------------
-**LogisticRegression<br/>**
-Average RMSE: 2.903073912909693<br/>
-Average accuracy: 25.690021231422506%
-----------------------------------------
-**DecisionTreeClassifier<br/>**
-Average RMSE: 2.9559382943441417<br/>
-Average accuracy: 20.000000000000004%
-----------------------------------------
-**Minimum RMSE: 2.8393874262905905%<br/>
-Maximum accuracy: 25.923566878980886%**
-
-### 2. All data instruments are turned on: <a id="experiment2"/>
-```
-USE_FEATURE_EXTRACTION = True
-USE_FEATURE_SCALING = True
+USE_FEATURE_POLYNOMIAL = False
 USE_OUTLIER_DETECTION = True
 ```
 
+### 2. Best model <a id="best_model"/>
+
+**GradientBoostingRegressor**
+```text
+RMSE=1.8376145929369048
+accuracy=23.67549668874172%
+```
+
+```
+USE_FEATURE_DROP = False
+USE_FEATURE_ENGINEERING = False
+USE_FEATURE_SCALING = False
+USE_OUTLIER_DETECTION = True
+USE_FEATURE_POLYNOMIAL = False
+```
+
+### 3. Other experimental models <a id="other_models"/>
+
+```text
 ----------------------------------------
-**OutputCodeClassifier<br/>**
-Average RMSE: 3.3168386776490215<br/>
-Average accuracy: 17.1947194719472%
+AdaBoostRegressor
+Average RMSE: 2.321849771811477
+Average accuracy: 25.398437091730834%
 ----------------------------------------
-**GaussianNB<br/>**
-Average RMSE: 2.8520343912989596<br/>
-Average accuracy: 18.97689768976898%
+GradientBoostingRegressor
+Average RMSE: 1.8713595504391913
+Average accuracy: 51.84697703616161%
 ----------------------------------------
-**KNeighborsClassifier<br/>**
-Average RMSE: 2.599180154877789<br/>
-Average accuracy: 25.951595159515957%
+RandomForestRegressor
+Average RMSE: 1.9139742254290497
+Average accuracy: 49.72607132638211%
 ----------------------------------------
-**SVC(poly)<br/>**
-Average RMSE: 2.60978010365839<br/>
-Average accuracy: 24.807480748074806%
+DecisionTreeRegressor
+Average RMSE: 2.591505330181916
+Average accuracy: 5.748209635917422%
 ----------------------------------------
-**SVC(linear)<br/>**
-Average RMSE: 2.718950219544472<br/>
-Average accuracy: 20.08800880088009%
+KNeighborsRegressor
+Average RMSE: 1.954786958463795
+Average accuracy: 48.13132264781077%
 ----------------------------------------
-**LogisticRegression<br/>**
-Average RMSE: 2.5927653254698386<br/>
-Average accuracy: 24.543454345434547%
+SVR with linear kernel
+Average RMSE: 1.9971005473001322
+Average accuracy: 45.00286028092048%
 ----------------------------------------
-**DecisionTreeClassifier<br/>**
-Average RMSE: 3.1717606747929565<br/>
-Average accuracy: 16.886688668866885%
+LinearRegression
+Average RMSE: 1.968712222385368
+Average accuracy: 47.85118889166549%
 ----------------------------------------
-**Minimum RMSE: 2.5927653254698384%<br/>
-Maximum accuracy: 24.543454345434547%**
+Ridge
+Average RMSE: 1.9577490791604637
+Average accuracy: 46.92694281850472%
+----------------------------------------
+Lasso
+Average RMSE: 2.715542705506666
+Average accuracy: -1.3070946129097871%
+----------------------------------------
+```
+
+The best model from model selection process is **GradientBoostingRegressor**
+```text
+Minimum RMSE: 1.8713595504391913
+Maximum accuracy: 51.84697703616161%
+```
